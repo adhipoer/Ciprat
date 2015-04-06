@@ -179,6 +179,33 @@ namespace DrawingAppV2
             SendKeys.Send("^V");
         }
 
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            Pen p = new Pen(Color.White, recentBrushSize);
+
+            bool isStop = false;
+            while (!isStop && stackD.Count > 0)
+            {
+                int tmp = stackD.Pop();
+                if (tmp != -2)
+                {
+                    int? aa = stackA.Pop();
+                    int? bb = stackB.Pop();
+                    int cc = stackC.Pop();
+                    int dd = tmp;
+                    graphic.DrawLine(p, new Point(aa ?? cc, bb ?? dd), new Point(cc, dd));
+                    Console.WriteLine(a + "  " + bb + " " + cc + " " + dd);
+                }
+                else
+                {
+                    isStop = true;
+                    int? aa = stackA.Pop();
+                    int? bb = stackB.Pop();
+                    int cc = stackC.Pop();
+                }
+            }
+        }
+
         
     }
 }
